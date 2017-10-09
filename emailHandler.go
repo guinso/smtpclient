@@ -4,7 +4,6 @@ import (
 	"crypto/tls"
 	"fmt"
 	"net/smtp"
-	"strings"
 )
 
 //EmailNetworkProtocol network type used to connect to email server
@@ -12,9 +11,9 @@ type EmailNetworkProtocol string
 
 const (
 	//TCP TCP network
-	TCP EmailNetworkProtocol = "TCP"
+	TCP EmailNetworkProtocol = "tcp"
 	//UDP UDP network
-	UDP EmailNetworkProtocol = "UDP"
+	UDP EmailNetworkProtocol = "udp"
 )
 
 //SendEmail send SMTP email
@@ -32,7 +31,7 @@ func SendEmail(emailServer string, portNumber int,
 		emailServer, portNumber, networkProtocol,
 		username, password,
 		message.From,
-		strings.Join(message.To, ";"),
+		message.To,
 		msg)
 }
 
@@ -41,7 +40,7 @@ func SendBasicEmail(emailServer string, portNumber int,
 	networkProtocol EmailNetworkProtocol, username string,
 	password string,
 	from string,
-	to string,
+	to []string,
 	message string) error {
 
 	tlsConfig := tls.Config{
@@ -84,8 +83,10 @@ func SendBasicEmail(emailServer string, portNumber int,
 	}
 
 	//set to receipain(s)
-	if err = client.Rcpt(to); err != nil {
-		return err
+	for _, rcp := range to {
+		if err = client.Rcpt(rcp); err != nil {
+			return err
+		}
 	}
 
 	//start write message
