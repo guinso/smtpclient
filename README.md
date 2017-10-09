@@ -89,7 +89,8 @@ message := smtpclient.MailMessage{
 //add custom content
 message.Content = append(message.Content, smtpclient.MailContent{
     Header: []string{ //write your own custom header here; you can have more than one header(s)
-        `Content-Type: application/json; charset="utf-8"`,
+        `Content-Type: application/json; charset="utf8"`,
+        `Content-Transfer-Encoding: utf8`,
     },
     Content: `{"title":"Jungle Booklet", "author":"Chuck Norris"}`
 })
