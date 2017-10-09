@@ -44,8 +44,8 @@ func (mailContent *MailContent) String() (string, error) {
 	return strings.Join(mailContent.Headers, "\r\n") + "\r\n\r\n" + mailContent.Content + "\r\n", nil
 }
 
-//AddTextContent add simple text content into mail body
-func (mail *MailMessage) AddTextContent(plainText string) {
+//AddText add simple text content into mail body
+func (mail *MailMessage) AddText(plainText string) {
 	mail.Contents = append(mail.Contents, MailContent{
 		Headers: []string{
 			"Content-Type: text/plain; charset=\"utf8\"",
@@ -55,8 +55,8 @@ func (mail *MailMessage) AddTextContent(plainText string) {
 	})
 }
 
-//AddHTMLContent add HTML format text content into mail body
-func (mail *MailMessage) AddHTMLContent(htmlText string) {
+//AddHTML add HTML format text content into mail body
+func (mail *MailMessage) AddHTML(htmlText string) {
 	mail.Contents = append(mail.Contents, MailContent{
 		Headers: []string{
 			"Content-Type: text/html; charset=\"utf8\"",
@@ -66,7 +66,7 @@ func (mail *MailMessage) AddHTMLContent(htmlText string) {
 	})
 }
 
-//AddAttachment add file attachment
+//AddAttachment add file attachment into mail body
 func (mail *MailMessage) AddAttachment(filePath string, filename string) error {
 
 	rawFile, fileErr := ioutil.ReadFile(filePath)

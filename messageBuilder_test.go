@@ -42,8 +42,8 @@ func TestMailMessage_String(t *testing.T) {
 		},
 	}
 
-	mail.AddTextContent("abcdefg")
-	mail.AddHTMLContent("<h1>hi</h1>")
+	mail.AddText("abcdefg")
+	mail.AddHTML("<h1>hi</h1>")
 
 	mailMsg, err := mail.String()
 	if err != nil {

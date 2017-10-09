@@ -23,8 +23,8 @@ message := smtpclient.MailMessage{
     Subject: "This is sample",
     Content: []smtpclient.MailContent{},
 }
-message.AddHTMLContent("<html><body><h1>Hello</h1></body></html>")
-message.AddTextContent("hello again")
+message.AddHTML("<html><body><h1>Hello</h1></body></html>")
+message.AddText("hello again")
 message.AddAttachment("/home/john/abc.txt", "customFilename.txt")
 
 //send email
@@ -53,8 +53,8 @@ message := smtpclient.MailMessage{
     Subject: "This is sample",
     Content: []smtpclient.MailContent{},
 }
-message.AddHTMLContent("<html><body><h1>Hello</h1></body></html>")
-message.AddTextContent("hello again")
+message.AddHTML("<html><body><h1>Hello</h1></body></html>")
+message.AddText("hello again")
 message.AddAttachment("/home/john/abc.txt", "customFilename.txt")
 
 //create email helper
