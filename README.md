@@ -1,0 +1,2 @@
+# smtpclient
+SMTP client library
