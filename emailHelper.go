@@ -1,7 +1,7 @@
 package smtpclient
 
-//SMTPHelper SMTP client helper tool
-type SMTPHelper struct {
+//EmailHelper SMTP client helper tool
+type EmailHelper struct {
 	ServerAddress    string
 	ServerPortNumber int
 	NetworkProtocol  EmailNetworkProtocol
@@ -10,7 +10,7 @@ type SMTPHelper struct {
 }
 
 //SendEmail send simple SMTP mail
-func (helper *SMTPHelper) SendEmail(message *MailMessage) error {
+func (helper *EmailHelper) SendEmail(message *MailMessage) error {
 	return SendEmail(helper.ServerAddress, helper.ServerPortNumber,
 		helper.NetworkProtocol,
 		helper.Username, helper.Password,
